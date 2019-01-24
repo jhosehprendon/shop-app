@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal';
 import history from '../../history';
-import { fetchStream, deleteStream } from '../../actions';
+import { fetchProduct, deleteProduct } from '../../actions';
 
 class ProductDelete extends React.Component {
 
     componentDidMount() {
-        this.props.fetchStream(this.props.match.params.id)
+        this.props.fetchProduct(this.props.match.params.id)
     }
 
     renderActions() {
        return (
             <React.Fragment>
-                <button onClick={() => this.props.deleteStream(this.props.match.params.id)} className="ui negative button">Delete</button>
+                <button onClick={() => this.props.deleteProduct(this.props.match.params.id)} className="ui negative button">Delete</button>
                 <Link className="ui button" to={'/'}>Cancel</Link>
             </React.Fragment> 
        )       
@@ -46,4 +46,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchStream, deleteStream})(ProductDelete);
+export default connect(mapStateToProps, {fetchProduct, deleteProduct})(ProductDelete);

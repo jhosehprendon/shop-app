@@ -1,7 +1,11 @@
-export const SIGN_IN = 'SIGN_IN';
+export const SIGN_UP = 'SIGN_UP';
+export const LOG_IN = 'LOG_IN';
 export const SIGN_OUT = 'SIGN_OUT';
-export const CREATE_STREAM = 'CREATE_STREAM';
-export const FETCH_STREAMS = 'FETCH_STREAMS';
-export const FETCH_STREAM = 'FETCH_STREAM';
-export const DELETE_STREAM = 'DELETE_STREAM';
-export const EDIT_STREAM = 'EDIT_STREAM';
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const FETCH_PRODUCT = 'FETCH_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const EDIT_PRODUCT = 'EDIT_PRODUCT';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const CHANGE_AUTH_NULL = 'CHANGE_AUTH_NULL';
+export const CHANGE_AUTH_BACK = 'CHANGE_AUTH_BACK'

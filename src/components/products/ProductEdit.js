@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStream, editStream } from '../../actions';
+import { fetchProduct, editProduct } from '../../actions';
 import ProductForm from './ProductForm';
 
 class ProductEdit extends React.Component {
     
     componentDidMount() {
-        this.props.fetchStream(this.props.match.params.id)
+        this.props.fetchProduct(this.props.match.params.id)
     }
 
     onSubmit = (formValues) => {
-        this.props.editStream(this.props.match.params.id, formValues)
+        this.props.editProduct(this.props.match.params.id, formValues)
     }
 
     render () {
@@ -36,4 +36,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchStream, editStream})(ProductEdit);
+export default connect(mapStateToProps, {fetchProduct, editProduct})(ProductEdit);

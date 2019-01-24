@@ -1,20 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { fetchStreams } from '../../actions/index'
+import { Link } from 'react-router-dom';
+import { fetchProducts } from '../../actions/index';
 
 class ProductList extends React.Component {
 
     componentDidMount() {
-        this.props.fetchStreams()
+        this.props.fetchProducts()
     }
 
-    renderAdmin = (stream) => {
-        if(stream.userId === this.props.currentUserId && !!this.props.currentUserId) {
+    renderAdmin = (product) => {
+        const currentUserId = localStorage.getItem('userId')
+        if(product.userId === currentUserId && !!currentUserId) {
             return (
                 <div className="right floated content">
-                    <Link className="ui button primary " to={`/products/edit/${stream.id}`}>Edit</Link>
-                    <Link to ={`/products/delete/${stream.id}`} className="ui button negative ">
+                    <Link className="ui button primary " to={`/products/edit/${product.id}`}>Edit</Link>
+                    <Link to ={`/products/delete/${product.id}`} className="ui button negative ">
                         Delete
                     </Link>
                 </div>
@@ -23,17 +24,16 @@ class ProductList extends React.Component {
     }
 
     renderList = () => {
-        return this.props.streams.map(stream => {
+        return this.props.products.map(product => {
             return (
-                <div className="item" key={stream.id}>
-                    {this.renderAdmin(stream)}
-                    <i className="large middle aligned icon camera" />
+                <div className="item" key={product._id}>
+                    {this.renderAdmin(product)}
                     <div className="content">
-                        <Link to={`/products/${stream.id}`} className="header">
-                            {stream.title}
+                        <Link to={`/products/${product._id}`} className="header">
+                            {product.name}
                         </Link>
                         <div className="description">
-                            {stream.description}
+                            {product.price}
                         </div>
                     </div>
                 </div>
@@ -66,10 +66,10 @@ class ProductList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        streams: Object.values(state.streams),
-        currentUserId: state.auth.userId,
+        products: state.products.products,
+        // currentUserId: state.auth.userId,
         isSignedIn: state.auth.isSignedIn
     }
 }
 
-export default connect(mapStateToProps, {fetchStreams})(ProductList);
+export default connect(mapStateToProps, {fetchProducts})(ProductList);

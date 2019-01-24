@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStream } from '../../actions';
+import { createProduct } from '../../actions';
 import ProductForm from './ProductForm';
 
 class ProductCreate extends React.Component {
 
     onSubmit = (formValues) => {
-        this.props.createStream(formValues)
+        this.props.createProduct(formValues)
     }
+
 
     render() {
         return (
@@ -20,4 +21,4 @@ class ProductCreate extends React.Component {
 }
 
 
-export default connect(null, { createStream })(ProductCreate)
+export default connect(null, { createProduct })(ProductCreate)

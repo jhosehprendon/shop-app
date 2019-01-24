@@ -1,55 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signIn, signOut } from '../actions';
+import { signUp, signOut } from '../actions';
+import history from '../history';
 
 class Auth extends React.Component {
 
-    // componentDidMount() {
-    //     window.gapi.load('client:auth2', () => {
-    //         window.gapi.client.init({
-    //             clientId: '63166761375-5gnr2163hr4ugtfv56ks5bdh73celkl7.apps.googleusercontent.com', 
-    //             scope: 'email'
-    //         }).then(() => {
-    //             this.auth = window.gapi.auth2.getAuthInstance()
-    //             this.onAuthChange(this.auth.isSignedIn.get())
-    //             this.auth.isSignedIn.listen(this.onAuthChange)
-    //         })
-    //     })
-    // }
-
-    onAuthChange = (isSignedin) => {
-        if(isSignedin) {
-            this.props.signIn(this.auth.currentUser.get().getId())
-        } else {
-            this.props.signOut()
-        }
-    }
-
-    onSignInClick = () => {
-        this.auth.signIn()
-    }
-
     onSignOutClick = () => {
-        this.auth.signOut()
+        this.props.signOut()
     }
 
     renderAuthButton() {
-        // if(this.props.isSignedIn === null) {
-        //     return null
-        // } else if ...
-        
-        if (this.props.isSignedIn) {
+         if (this.props.isSignedIn) {
             return (
-                <button onClick={this.onSignOutClick} className="ui red google button">
-                    <i className="google icon" />
+                <button onClick={this.onSignOutClick} className="ui blue button" style={styles.buttonStyle}>
                     Sign Out
                 </button>
             )
-        } else {
+        } else if (this.props.isSignedIn === null) {
+            return null
+        } else if (!this.props.isSignedIn) {
             return (
-                <button onClick={this.onSignInClick} className="ui red google button">
-                    <i className="google icon" />
-                    Sign In with Google
+                <button onClick={() => history.push('/signup')} className="ui blue button" style={styles.buttonStyle}>
+                    Sign Up
                 </button>
             )
         }
@@ -64,10 +36,17 @@ class Auth extends React.Component {
     }
 }
 
+const styles = {
+    buttonStyle: {
+        marginTop: '6px', 
+        marginBottom: '6px'
+    }
+}
+
 const mapStateToProps = state => {
     return {
         isSignedIn: state.auth.isSignedIn
     }
 }
 
-export default connect(mapStateToProps, { signIn, signOut })(Auth)
+export default connect(mapStateToProps, { signUp, signOut })(Auth)

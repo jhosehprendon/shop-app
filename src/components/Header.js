@@ -9,9 +9,6 @@ const Header = () => {
                 My Shop
             </Link>
             <div className="right menu">
-                <Link to="/" className="item">
-                    All streams
-                </Link>
                 <Auth />
             </div>
         </div>

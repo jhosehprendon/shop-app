@@ -1,27 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStream } from '../../actions';
+import { fetchProduct } from '../../actions';
 
 class ProductDetail extends React.Component {
 
     componentDidMount() {
         const { id } = this.props.match.params
 
-        this.props.fetchStream(id);
+        this.props.fetchProduct(id);
     }
 
 
     render() {
-        if(!this.props.stream) {
+        if(!this.props.product) {
             return <div>loading...</div>
         }
 
-        const { title, description } = this.props.stream
+        const { name, price, productImage } = this.props.product
 
         return (
             <div>
-                <h1>{title}</h1>
-                <h5>{description}</h5>
+                <img style={{width:'120px'}} src={`http://localhost:3002/${productImage}`} alt={productImage} />
+                <h1>{name}</h1>
+                <h5>{price}</h5>
             </div>
         )
     } 
@@ -29,8 +30,8 @@ class ProductDetail extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        stream: state.streams[ownProps.match.params.id]
+        product: state.products[ownProps.match.params.id]
     }
 }
 
-export default connect(mapStateToProps, {fetchStream})(ProductDetail);
+export default connect(mapStateToProps, {fetchProduct})(ProductDetail);
