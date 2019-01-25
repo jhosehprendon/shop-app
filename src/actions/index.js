@@ -79,7 +79,13 @@ export const fetchProduct = (id) => {
 
 export const editProduct = (id, formValues) => {
     return async dispatch => {
-        const response = await streams.patch(`/streams/${id}`, formValues)
+        const token = localStorage.getItem('token')
+        const response = await streams.patch(`http://localhost:3002/products/${id}`, formValues, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+            }
+          })
         dispatch({ type: EDIT_PRODUCT, payload: response.data })
         history.push('/')
     }
@@ -87,7 +93,13 @@ export const editProduct = (id, formValues) => {
 
 export const deleteProduct = (id) => {
     return async dispatch => {
-        await streams.delete(`/streams/${id}`)
+        const token = localStorage.getItem('token')
+        await streams.delete(`http://localhost:3002/products/${id}`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+            }
+          })
         dispatch({ type: DELETE_PRODUCT, payload: id })
         history.push('/')
     }

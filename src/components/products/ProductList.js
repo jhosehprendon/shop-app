@@ -14,8 +14,8 @@ class ProductList extends React.Component {
         if(product.userId === currentUserId && !!currentUserId) {
             return (
                 <div className="right floated content">
-                    <Link className="ui button primary " to={`/products/edit/${product.id}`}>Edit</Link>
-                    <Link to ={`/products/delete/${product.id}`} className="ui button negative ">
+                    <Link className="ui button primary " to={`/products/edit/${product._id}`}>Edit</Link>
+                    <Link to ={`/products/delete/${product._id}`} className="ui button negative ">
                         Delete
                     </Link>
                 </div>

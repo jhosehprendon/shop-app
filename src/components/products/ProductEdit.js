@@ -14,7 +14,7 @@ class ProductEdit extends React.Component {
     }
 
     render () {
-        if(!this.props.stream) {
+        if(!this.props.product) {
             return <div>loading...</div>
         }
 
@@ -22,7 +22,7 @@ class ProductEdit extends React.Component {
             <div>
                 <h3>Edit Product</h3>
                 <ProductForm 
-                    initialValues={{title: this.props.stream.title, description: this.props.stream.description}}
+                    initialValues={{name: this.props.product.name, price: this.props.product.price}}
                     onSubmit={this.onSubmit}
                 />
             </div>
@@ -32,7 +32,7 @@ class ProductEdit extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        stream: state.streams[ownProps.match.params.id]
+        product: state.products[ownProps.match.params.id]
     }
 }
 
