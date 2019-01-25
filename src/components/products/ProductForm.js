@@ -5,7 +5,17 @@ class ProductForm extends React.Component {
 
     state = {
         productImage: null,
-        disabled: true
+        disabled: true,
+        file: null
+    }
+
+    componentDidMount() {
+        if(this.props.productImage) {
+            
+            this.setState({
+                file: `http://localhost:3002/${this.props.productImage}`
+            })
+        }
     }
 
     renderError = ({ error, touched }) => {
@@ -33,7 +43,8 @@ class ProductForm extends React.Component {
 
         this.setState({
             productImage: event.target.files[0],
-            disabled: false
+            disabled: false,
+            file: URL.createObjectURL(event.target.files[0])
         })   
     }
 
@@ -77,6 +88,9 @@ class ProductForm extends React.Component {
                 <Field name="name" component={this.renderInput} label="Enter product name"/>
                 <Field name="price" type="number" component={this.renderInput} label="Enter product price"/>
                 <Field name="productImage" component={this.renderInputFile} label="Select product image"/>
+                <div>
+                    <img style={{width: '120px'}} src={this.state.file}/>
+                </div>
                 {this.renderImageMessage()}
                 <button style={{marginTop: '15px'}} className="ui button primary" disabled={this.state.disabled}>{this.props.buttonText}</button>
             </form>

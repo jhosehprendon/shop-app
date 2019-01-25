@@ -26,6 +26,7 @@ class ProductEdit extends React.Component {
                     initialValues={{name: this.props.product.name, price: this.props.product.price}}
                     onSubmit={this.onSubmit}
                     buttonText='Edit Product'
+                    productImage={this.props.product.productImage}
                 />
             </div>
         )
