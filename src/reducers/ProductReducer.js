@@ -16,7 +16,7 @@ export default (state = {products:[]}, action) => {
         case CREATE_PRODUCT:
             return {...state, [action.payload.id]: action.payload}
         case EDIT_PRODUCT:
-            return {...state, [action.payload.id]: action.payload}
+            return {...state, [action.payload._id]: action.payload}
         case DELETE_PRODUCT:
             return _.omit(state, action.payload)
         default:

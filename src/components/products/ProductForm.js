@@ -29,10 +29,6 @@ class ProductForm extends React.Component {
     }
 
     handleChange = (event) => {
-        // console.log((event.target.files[0]))
-        // const data = new FormData();
-        // data.append('file', event.target.files[0]);
-        // console.log(event.target.files[0])
 
         this.setState({
             productImage: event.target.files[0]

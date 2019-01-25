@@ -10,6 +10,7 @@ class ProductEdit extends React.Component {
     }
 
     onSubmit = (formValues) => {
+        
         this.props.editProduct(this.props.match.params.id, formValues)
     }
 
@@ -22,7 +23,7 @@ class ProductEdit extends React.Component {
             <div>
                 <h3>Edit Product</h3>
                 <ProductForm 
-                    initialValues={{name: this.props.product.name, price: this.props.product.price}}
+                    initialValues={{name: this.props.product.name, price: this.props.product.price, productImage: this.props.product.productImage}}
                     onSubmit={this.onSubmit}
                 />
             </div>
