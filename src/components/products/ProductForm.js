@@ -4,7 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 class ProductForm extends React.Component {
 
     state = {
-        productImage: null
+        productImage: null,
+        disabled: true
     }
 
     renderError = ({ error, touched }) => {
@@ -31,17 +32,19 @@ class ProductForm extends React.Component {
     handleChange = (event) => {
 
         this.setState({
-            productImage: event.target.files[0]
-        })
+            productImage: event.target.files[0],
+            disabled: false
+        })   
     }
 
     renderInputFile = ({label, meta}) => {
-        const className = `field ${meta.error && meta.touched ? 'error' : ''}`
+     
+        // const className = `field ${meta.error && meta.touched ? 'error' : ''}`
         return (
-            <div className={className}>
+            <div>
                 <label>{label}</label>
                 <input type="file" onChange={this.handleChange}/>
-                {this.renderError(meta)}
+                {/* {this.renderError(meta)} */}
             </div>
         )
     }
@@ -57,32 +60,41 @@ class ProductForm extends React.Component {
         this.props.onSubmit(formData)
     }
 
+    renderImageMessage = () => {
+        if(this.state.disabled) {
+            return (
+                <p style={{color:'red'}}>You must upload a picture</p>
+            )
+        } else {
+            return null
+        }
+    }
+
     render() {
+   
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error"> 
                 <Field name="name" component={this.renderInput} label="Enter product name"/>
                 <Field name="price" type="number" component={this.renderInput} label="Enter product price"/>
-                <Field name="productImage" component={this.renderInputFile} />
-                <button style={{marginTop: '15px'}} className="ui button primary">Submit Product</button>
+                <Field name="productImage" component={this.renderInputFile} label="Select product image"/>
+                {this.renderImageMessage()}
+                <button style={{marginTop: '15px'}} className="ui button primary" disabled={this.state.disabled}>{this.props.buttonText}</button>
             </form>
         )
     }  
 }
 
 const validate = (formValues) => {
+    
     const errors = {}
 
     if(!formValues.name) {
-        errors.name = 'You must enter a title'
+        errors.name = 'You must enter a name'
     }
 
     if(!formValues.price) {
-        errors.price = 'You must enter a description'
+        errors.price = 'You must enter a price'
     }
-
-    // if(!formValues.file) {
-    //     errors.file = 'You must upload a product image'
-    // }
 
     return errors
 }

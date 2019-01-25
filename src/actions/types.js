@@ -8,4 +8,4 @@ export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const CHANGE_AUTH_NULL = 'CHANGE_AUTH_NULL';
-export const CHANGE_AUTH_BACK = 'CHANGE_AUTH_BACK'
+export const CHANGE_AUTH_BACK = 'CHANGE_AUTH_BACK';

@@ -23,8 +23,9 @@ class ProductEdit extends React.Component {
             <div>
                 <h3>Edit Product</h3>
                 <ProductForm 
-                    initialValues={{name: this.props.product.name, price: this.props.product.price, productImage: this.props.product.productImage}}
+                    initialValues={{name: this.props.product.name, price: this.props.product.price}}
                     onSubmit={this.onSubmit}
+                    buttonText='Edit Product'
                 />
             </div>
         )

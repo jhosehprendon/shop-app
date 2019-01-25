@@ -14,7 +14,7 @@ class ProductCreate extends React.Component {
         return (
             <div>
                 <h3>Create a Product</h3>
-                <ProductForm onSubmit={this.onSubmit} />
+                <ProductForm onSubmit={this.onSubmit} buttonText='Create Product' />
             </div>    
         )
     }  

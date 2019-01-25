@@ -3,11 +3,15 @@ import {
     FETCH_PRODUCTS,
     CREATE_PRODUCT,
     EDIT_PRODUCT,
-    DELETE_PRODUCT
+    DELETE_PRODUCT,
 } from '../actions/types'
 import _ from 'lodash'
 
-export default (state = {products:[]}, action) => {
+const INITIAL_STATE = {
+    products:[]
+}
+
+export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case FETCH_PRODUCTS:
             return {...state, products: action.payload}
