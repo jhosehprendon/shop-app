@@ -5,15 +5,18 @@ class ProductForm extends React.Component {
 
     state = {
         productImage: null,
-        disabled: true,
-        file: null
+        disabled: false ,
+        file: null,
+        blob: null
     }
 
     componentDidMount() {
+
         if(this.props.productImage) {
-            
+
             this.setState({
-                file: `http://localhost:3002/${this.props.productImage}`
+                file: `http://localhost:3002/${this.props.productImage}`,
+                productImage: this.state.productImage
             })
         }
     }
@@ -40,12 +43,12 @@ class ProductForm extends React.Component {
     }
 
     handleChange = (event) => {
-
         this.setState({
             productImage: event.target.files[0],
             disabled: false,
             file: URL.createObjectURL(event.target.files[0])
         })   
+
     }
 
     renderInputFile = ({label, meta}) => {
@@ -66,15 +69,46 @@ class ProductForm extends React.Component {
         formData.set('name', formValues.name)
         formData.set('price', formValues.price)
         formData.set('userId', userId)
-        formData.set('productImage', this.state.productImage)
 
-        this.props.onSubmit(formData)
+        if(this.state.productImage === null) {
+            var arr = []
+
+            for (var key of formData.entries()) {
+                var obj = {}
+                obj['propName'] = key[0]
+                obj['value'] = key[1]
+                arr.push(obj)
+            }
+            console.log(arr)
+            this.props.onSubmit(arr)
+            
+        } else {
+            formData.set('productImage', this.state.productImage)
+            this.props.onSubmit(formData)
+        }
+        
+        // if(!this.state.productImage === null) {
+        //     formData.set('productImage', this.state.productImage)
+        // }
+        // if(!this.state.file) {
+        //     formData.set('productImage', this.state.productImage)
+        // } else {
+        //     formData.set('productImage', this.state.file)
+        // }
+
+        /* 
+        [
+                { propName: name, value: 'New book' }
+        ]
+    */
+
+       
     }
 
     renderImageMessage = () => {
         if(this.state.disabled) {
             return (
-                <p style={{color:'red'}}>You must upload a picture</p>
+                <p style={{color:'red'}}>{this.props.imageMessage}</p>
             )
         } else {
             return null

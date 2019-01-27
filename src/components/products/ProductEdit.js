@@ -9,6 +9,10 @@ class ProductEdit extends React.Component {
         this.props.fetchProduct(this.props.match.params.id)
     }
 
+    componentWillUnmount() {
+        this.props.fetchProduct(this.props.match.params.id)
+    }
+
     onSubmit = (formValues) => {
         
         this.props.editProduct(this.props.match.params.id, formValues)
@@ -18,15 +22,17 @@ class ProductEdit extends React.Component {
         if(!this.props.product) {
             return <div>loading...</div>
         }
+        console.log('Edit',this.props.product)
 
         return (
             <div>
                 <h3>Edit Product</h3>
                 <ProductForm 
-                    initialValues={{name: this.props.product.name, price: this.props.product.price}}
+                    initialValues={{name: this.props.product.name, price: this.props.product.price, productImage:this.props.product.productImage}}
                     onSubmit={this.onSubmit}
                     buttonText='Edit Product'
                     productImage={this.props.product.productImage}
+                    imageMessage='Change image'
                 />
             </div>
         )

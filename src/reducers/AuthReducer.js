@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
         case SIGN_UP:
             return { ...state, isSignedIn: true }
         case LOG_IN:
-            return { ...state, isSignedIn: true }
+            return { ...state, isSignedIn: true, userId: action.payload.userId }
         case AUTH_ERROR:
             return {...state, error: 'Email already exist'}
         case CHANGE_AUTH_NULL:

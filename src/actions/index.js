@@ -20,7 +20,7 @@ export const logIn = formValues => {
         const response = await streams.post('http://localhost:3002/user/login', {...formValues})
         // console.log(response.data.token)
         // console.log(response.data.userId)
-        dispatch({ type: LOG_IN })
+        dispatch({ type: LOG_IN, payload: response.data })
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
         history.push('/')
@@ -50,16 +50,21 @@ export const changeAuthBack = () => {
 }
 
 export const createProduct = formValues => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         const token = localStorage.getItem('token')
-        const response = await streams.post('http://localhost:3002/products', formValues, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + token
-            }
-          })
-        dispatch({ type: CREATE_PRODUCT, payload: response.data })
-        history.push('/')
+        // const {userId} = getState().auth
+        if(token) {
+            const response = await streams.post('http://localhost:3002/products', formValues, {
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+                }
+            })
+            dispatch({ type: CREATE_PRODUCT, payload: response.data })
+            history.push('/')
+        } else {
+            dispatch(signOut())
+        } 
     }
 }
 
@@ -72,22 +77,29 @@ export const fetchProducts = () => {
 
 export const fetchProduct = (id) => {
     return async dispatch => {
+
         const response = await streams.get(`http://localhost:3002/products/${id}`)
         dispatch({ type: FETCH_PRODUCT, payload: response.data.product })
     }
 }
 
 export const editProduct = (id, formValues) => {
-    return async dispatch => {
+    return async (dispatch, getState) => {
         const token = localStorage.getItem('token')
-        const response = await streams.patch(`http://localhost:3002/products/${id}`, formValues, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + token
-            }
-          })
-        dispatch({ type: EDIT_PRODUCT, payload: response.data })
-        history.push('/')
+        // const {userId} = getState().auth
+        if(token) {
+            const response = await streams.patch(`http://localhost:3002/products/${id}`, formValues, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + token
+                }
+              })
+            dispatch({ type: EDIT_PRODUCT, payload: response.data })
+            history.push('/')
+        } else {
+            dispatch(signOut())
+        } 
+       
     }
 }
 
