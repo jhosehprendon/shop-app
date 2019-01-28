@@ -5,6 +5,7 @@ import ProductEdit from '../components/products/ProductEdit';
 import ProductDelete from '../components/products/ProductDelete';
 import ProductDetail from '../components/products/ProductDetail';
 import ProductList from '../components/products/ProductList';
+import OrderList from '../components/orders/OrderList';
 import Signup from './Signup';
 import Login from './Login';
 import Header from './Header';
@@ -24,6 +25,7 @@ const App = () => {
                         <Route path="/products/edit/:id" exact component={ProductEdit}/>
                         <Route path="/products/delete/:id" exact component={ProductDelete}/>
                         <Route path="/products/:id" exact component={ProductDetail}/>
+                        <Route path="/orders" component={OrderList}/>
                     </Switch>
                 </div>
             </Router>

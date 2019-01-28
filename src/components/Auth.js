@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { signUp, signOut } from '../actions';
 import history from '../history';
 
@@ -12,9 +13,14 @@ class Auth extends React.Component {
     renderAuthButton() {
          if (this.props.isSignedIn) {
             return (
-                <button onClick={this.onSignOutClick} className="ui blue button" style={styles.buttonStyle}>
-                    Sign Out
-                </button>
+                <div>
+                    <Link to="/orders" style={{display: 'inline', marginRight: '10px'}}>
+                        My Orders
+                    </Link>
+                    <button onClick={this.onSignOutClick} className="ui blue button" style={styles.buttonStyle}>
+                        Sign Out
+                    </button>
+                </div>
             )
         } else if (this.props.isSignedIn === null) {
             return null
