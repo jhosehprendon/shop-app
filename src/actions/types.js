@@ -10,3 +10,4 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const CHANGE_AUTH_NULL = 'CHANGE_AUTH_NULL';
 export const CHANGE_AUTH_BACK = 'CHANGE_AUTH_BACK';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
+export const CREATE_ORDER = 'CREATE_ORDER';

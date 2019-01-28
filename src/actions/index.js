@@ -1,4 +1,17 @@
-import { SIGN_UP, LOG_IN, SIGN_OUT, CREATE_PRODUCT, FETCH_PRODUCTS, FETCH_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, AUTH_ERROR, CHANGE_AUTH_NULL, CHANGE_AUTH_BACK, FETCH_ORDERS } from './types';
+import { SIGN_UP, 
+        LOG_IN, 
+        SIGN_OUT, 
+        CREATE_PRODUCT, 
+        FETCH_PRODUCTS, 
+        FETCH_PRODUCT, 
+        DELETE_PRODUCT, 
+        EDIT_PRODUCT, 
+        AUTH_ERROR, 
+        CHANGE_AUTH_NULL, 
+        CHANGE_AUTH_BACK, 
+        FETCH_ORDERS,
+        CREATE_ORDER
+    } from './types';
 import streams from '../apis/streams';
 import history from '../history';
 
@@ -122,6 +135,25 @@ export const deleteProduct = (id) => {
 }
 
 // ORDERS
+
+export const createOrder = formValues => {
+    return async (dispatch, getState) => {
+        const token = localStorage.getItem('token')
+        // const {userId} = getState().auth
+        if(token) {
+            const response = await streams.post('http://localhost:3002/orders', formValues, {
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+                }
+            })
+            dispatch({ type: CREATE_ORDER, payload: response.data })
+            history.push('/orders')
+        } else {
+            dispatch(signOut())
+        } 
+    }
+}
 
 export const fetchOrders = () => {
     return async dispatch => {

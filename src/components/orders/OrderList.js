@@ -41,16 +41,6 @@ class OrderList extends React.Component {
         })
     }
 
-    renderCreate = () => {
-        if(this.props.isSignedIn) {
-            return (
-                <div style={{textAlign:'right'}}>
-                    <Link to="/products/new" className="ui button primary">Make an order</Link>
-                </div>
-            )
-        }
-    }
-
     render() {
         return (
             <div>
@@ -58,7 +48,6 @@ class OrderList extends React.Component {
                 <div className="ui celled list">
                     {this.renderList()}
                 </div>
-                {this.renderCreate()}
             </div>
         )
     } 

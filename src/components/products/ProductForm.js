@@ -85,24 +85,7 @@ class ProductForm extends React.Component {
         } else {
             formData.set('productImage', this.state.productImage)
             this.props.onSubmit(formData)
-        }
-        
-        // if(!this.state.productImage === null) {
-        //     formData.set('productImage', this.state.productImage)
-        // }
-        // if(!this.state.file) {
-        //     formData.set('productImage', this.state.productImage)
-        // } else {
-        //     formData.set('productImage', this.state.file)
-        // }
-
-        /* 
-        [
-                { propName: name, value: 'New book' }
-        ]
-    */
-
-       
+        } 
     }
 
     renderImageMessage = () => {

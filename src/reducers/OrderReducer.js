@@ -1,7 +1,7 @@
 import {
     // FETCH_PRODUCT,
     FETCH_ORDERS,
-    // CREATE_PRODUCT,
+    CREATE_ORDER,
     // EDIT_PRODUCT,
     // DELETE_PRODUCT,
 } from '../actions/types'
@@ -17,8 +17,8 @@ export default (state = INITIAL_STATE, action) => {
             return {...state, orders: action.payload}
         // case FETCH_PRODUCT:
         //     return {...state, [action.payload._id]: action.payload}
-        // case CREATE_PRODUCT:
-        //     return {...state, [action.payload.id]: action.payload}
+        case CREATE_ORDER:
+            return {...state, [action.payload.id]: action.payload}
         // case EDIT_PRODUCT:
         //     return {...state, [action.payload._id]: action.payload}
         // case DELETE_PRODUCT:
