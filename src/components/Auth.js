@@ -26,9 +26,15 @@ class Auth extends React.Component {
             return null
         } else if (!this.props.isSignedIn) {
             return (
-                <button onClick={() => history.push('/signup')} className="ui blue button" style={styles.buttonStyle}>
-                    Sign Up
-                </button>
+                <div>
+                    <Link to="/login" style={{display: 'inline', marginRight: '10px'}}>
+                        Log In
+                    </Link>
+                    <button onClick={() => history.push('/signup')} className="ui blue button" style={styles.buttonStyle}>
+                        Sign Up
+                    </button>
+                </div>
+               
             )
         }
     }

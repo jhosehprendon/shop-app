@@ -29,7 +29,7 @@ class OrderList extends React.Component {
                 <div className="item" key={order._id}>
                     {this.renderAdmin(order)}
                     <div className="content">
-                        <Link to={`/products/${order._id}`} className="header">
+                        <Link to={`/orders/${order._id}`} className="header">
                             {order.product.name}
                         </Link>
                         <div className="description">

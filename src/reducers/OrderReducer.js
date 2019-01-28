@@ -1,5 +1,5 @@
 import {
-    // FETCH_PRODUCT,
+    FETCH_ORDER,
     FETCH_ORDERS,
     CREATE_ORDER,
     // EDIT_PRODUCT,
@@ -15,8 +15,8 @@ export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case FETCH_ORDERS:
             return {...state, orders: action.payload}
-        // case FETCH_PRODUCT:
-        //     return {...state, [action.payload._id]: action.payload}
+        case FETCH_ORDER:
+            return {...state, [action.payload._id]: action.payload}
         case CREATE_ORDER:
             return {...state, [action.payload.id]: action.payload}
         // case EDIT_PRODUCT:

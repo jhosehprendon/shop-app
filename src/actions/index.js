@@ -10,6 +10,7 @@ import { SIGN_UP,
         CHANGE_AUTH_NULL, 
         CHANGE_AUTH_BACK, 
         FETCH_ORDERS,
+        FETCH_ORDER,
         CREATE_ORDER
     } from './types';
 import streams from '../apis/streams';
@@ -151,6 +152,7 @@ export const createOrder = formValues => {
             history.push('/orders')
         } else {
             dispatch(signOut())
+            history.push('/signup')
         } 
     }
 }
@@ -171,5 +173,22 @@ export const fetchOrders = () => {
         } else {
             dispatch(signOut())
         } 
+    }
+}
+
+export const fetchOrder = (id) => {
+    return async dispatch => {
+        const token = localStorage.getItem('token')
+        if(token) {
+            const response = await streams.get(`http://localhost:3002/orders/${id}`, {
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+                }
+            })
+            dispatch({ type: FETCH_ORDER, payload: response.data.order })
+        } else {
+            dispatch(signOut())
+        }
     }
 }
