@@ -11,7 +11,8 @@ import { SIGN_UP,
         CHANGE_AUTH_BACK, 
         FETCH_ORDERS,
         FETCH_ORDER,
-        CREATE_ORDER
+        CREATE_ORDER,
+        DELETE_ORDER
     } from './types';
 import streams from '../apis/streams';
 import history from '../history';
@@ -167,7 +168,6 @@ export const fetchOrders = () => {
                 'Authorization': 'Bearer ' + token
                 }
             })
-            console.log(response.data)
 
             dispatch({ type: FETCH_ORDERS, payload: response.data.orders })
         } else {
@@ -190,5 +190,19 @@ export const fetchOrder = (id) => {
         } else {
             dispatch(signOut())
         }
+    }
+}
+
+export const deleteOrder = (id) => {
+    return async dispatch => {
+        const token = localStorage.getItem('token')
+        await streams.delete(`http://localhost:3002/orders/${id}`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+            }
+          })
+        dispatch({ type: DELETE_ORDER, payload: id })
+        history.push('/orders')
     }
 }

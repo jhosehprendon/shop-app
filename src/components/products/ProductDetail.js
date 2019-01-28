@@ -5,6 +5,10 @@ import { Field, reduxForm } from 'redux-form';
 
 class ProductDetail extends React.Component {
 
+    state = {
+        totalAmount: 0
+    }
+
     componentDidMount() {
         const { id } = this.props.match.params
 
@@ -40,6 +44,12 @@ class ProductDetail extends React.Component {
         this.props.createOrder(formData)
     }   
 
+    onChange = (event) => {
+        this.setState({
+            totalAmount: event.target.value 
+        })
+    }
+
 
     render() {
         if(!this.props.product) {
@@ -52,10 +62,13 @@ class ProductDetail extends React.Component {
             <div>
                 <img style={{width:'120px'}} src={`http://localhost:3002/${productImage}`} alt={productImage} />
                 <h1>{name}</h1>
-                <h5>{price}</h5>
+                <h5>$ {price}</h5>
                 <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error"> 
-                    <div style={{width: '80px'}}>
-                    <Field  name="quantity" component={this.renderInput} label="Enter amount"/>
+                    <div style={{width: '100px'}}>
+                    <Field onChange={this.onChange} name="quantity" component={this.renderInput} label="Enter quantity"/>
+                    </div>
+                    <div>
+                        Total: $ {this.state.totalAmount * price}
                     </div>
                     <button style={{marginTop: '10px', marginBottom: '10px'}}className="ui green button">
                         Purchase

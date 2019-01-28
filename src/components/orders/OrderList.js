@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchOrders } from '../../actions/index';
+import { fetchOrders, deleteOrder } from '../../actions/index';
 
 class OrderList extends React.Component {
 
@@ -10,17 +10,14 @@ class OrderList extends React.Component {
     }
 
     renderAdmin = (order) => {
-        const currentUserId = localStorage.getItem('userId')
-        if(order.userId === currentUserId && !!currentUserId) {
             return (
                 <div className="right floated content">
-                    <Link className="ui button primary " to={`/products/edit/${order._id}`}>Edit</Link>
-                    <Link to ={`/products/delete/${order._id}`} className="ui button negative ">
+                    <Link to ={`/orders/delete/${order._id}`} className="ui button basic negative ">
                         Delete
-                    </Link> 
+                    </Link>
                 </div>
             )
-        }
+        
     }
 
     renderList = () => {
@@ -60,4 +57,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchOrders})(OrderList);
+export default connect(mapStateToProps, {fetchOrders, deleteOrder})(OrderList);

@@ -2,8 +2,7 @@ import {
     FETCH_ORDER,
     FETCH_ORDERS,
     CREATE_ORDER,
-    // EDIT_PRODUCT,
-    // DELETE_PRODUCT,
+    DELETE_ORDER
 } from '../actions/types'
 import _ from 'lodash'
 
@@ -21,8 +20,9 @@ export default (state = INITIAL_STATE, action) => {
             return {...state, [action.payload.id]: action.payload}
         // case EDIT_PRODUCT:
         //     return {...state, [action.payload._id]: action.payload}
-        // case DELETE_PRODUCT:
-        //     return _.omit(state, action.payload)
+        case DELETE_ORDER:
+            console.log(action.payload)
+            return _.omit(state, action.payload)
         default:
             return state
     }

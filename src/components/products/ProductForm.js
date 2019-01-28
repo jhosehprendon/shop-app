@@ -106,7 +106,7 @@ class ProductForm extends React.Component {
                 <Field name="price" type="number" component={this.renderInput} label="Enter product price"/>
                 <Field name="productImage" component={this.renderInputFile} label="Select product image"/>
                 <div>
-                    <img style={{width: '120px'}} src={this.state.file}/>
+                    <img style={{width: '120px'}} src={this.state.file} alt={this.state.file}/>
                 </div>
                 {this.renderImageMessage()}
                 <button style={{marginTop: '15px'}} className="ui button primary" disabled={this.state.disabled}>{this.props.buttonText}</button>
