@@ -101,16 +101,20 @@ class ProductForm extends React.Component {
     render() {
    
         return (
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error"> 
-                <Field name="name" component={this.renderInput} label="Enter product name"/>
-                <Field name="price" type="number" component={this.renderInput} label="Enter product price"/>
-                <Field name="productImage" component={this.renderInputFile} label="Select product image"/>
-                <div>
-                    <img style={{width: '120px'}} src={this.state.file} alt={this.state.file}/>
+            <div class="ui card" style={{margin: 'auto', marginTop: '50px'}}>
+                <div class="content">
+                    <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error"> 
+                        <Field name="name" component={this.renderInput} label="Enter product name"/>
+                        <Field name="price" type="number" component={this.renderInput} label="Enter product price"/>
+                        <Field name="productImage" component={this.renderInputFile} label="Select product image"/>
+                        <div style={{marginTop: '10px'}}>
+                            <img style={{width: '120px'}} src={this.state.file} alt={this.state.file}/>
+                        </div>
+                        {this.renderImageMessage()}
+                        <button style={{marginTop: '15px'}} className="ui button primary" disabled={this.state.disabled}>{this.props.buttonText}</button>
+                    </form>
                 </div>
-                {this.renderImageMessage()}
-                <button style={{marginTop: '15px'}} className="ui button primary" disabled={this.state.disabled}>{this.props.buttonText}</button>
-            </form>
+            </div>
         )
     }  
 }

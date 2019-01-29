@@ -17,11 +17,15 @@ class OrderDetail extends React.Component {
         }
 
         return (
-            <div>
-                <img style={{width:'120px'}} src={`http://localhost:3002/${this.props.order.product.productImage}`} alt={this.props.order.product.productImage} />
-                <h1>{this.props.order.product.name}</h1>
-                <h5>Quantity: {this.props.order.quantity}</h5>
-                <h5>Total: ${this.props.order.product.price * this.props.order.quantity}</h5> 
+            <div class="ui card" style={{margin: 'auto', marginTop: '50px'}}>
+                <div class="image">
+                    <img src={`http://localhost:3002/${this.props.order.product.productImage}`} alt={this.props.order.product.productImage} />
+                </div>
+                <div class="content">
+                    <h1 class="header">{this.props.order.product.name}</h1>
+                    <h5>Quantity: {this.props.order.quantity}</h5>
+                    <h5>Total: ${this.props.order.product.price * this.props.order.quantity}</h5> 
+                </div>
             </div>
         )
     } 

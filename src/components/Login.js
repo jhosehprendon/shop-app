@@ -14,6 +14,7 @@ class Signup extends React.Component {
             <div>
                 <h3>Log In</h3>
                 <AuthForm onSubmit={this.onSubmit} authMode='LogIn' />
+                <div style={{color: 'red'}}>{this.props.authError}</div>
             </div>    
         )
     }  

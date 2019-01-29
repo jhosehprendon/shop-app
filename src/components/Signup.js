@@ -25,9 +25,11 @@ class Signup extends React.Component {
             <div>
                 <h3>Sign Up</h3>
                 <AuthForm onSubmit={this.onSubmit} authMode='SignUp' />
-                <div style={{color: 'red'}}>{this.props.authError}</div>
-                <p>Already have an account?</p>
-                <Link to={'/login'} className="header">Click Here</Link>
+                <div style={{color: 'red', textAlign: 'center'}}>{this.props.authError}</div>
+                <div style={{textAlign: 'center', marginTop: '10px'}}>
+                    <p>Already have an account?</p>
+                    <Link to={'/login'} className="header">Click Here</Link>
+                </div>
             </div>    
         )
     }  
