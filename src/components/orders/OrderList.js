@@ -13,7 +13,7 @@ class OrderList extends React.Component {
             return (
                 <div className="right floated content">
                     <Link to ={`/orders/delete/${order._id}`} className="ui button basic negative ">
-                        Delete
+                        Cancel order
                     </Link>
                 </div>
             )

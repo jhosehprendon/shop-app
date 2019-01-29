@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 class ProductDetail extends React.Component {
 
     state = {
-        totalAmount: 0
+        totalAmount: 1
     }
 
     componentDidMount() {
@@ -23,17 +23,6 @@ class ProductDetail extends React.Component {
                 </div>
             )
         }
-    }
-
-    renderInput = ({input, label, meta}) => {
-        const className = `field ${meta.error && meta.touched ? 'error' : ''}`
-        return (
-            <div className={className}>
-                <label>{label}</label>
-                <input {...input} autoComplete='off' />
-                {this.renderError(meta)}
-            </div>
-        )
     }
 
     onSubmit = (formValues) => {
@@ -62,10 +51,15 @@ class ProductDetail extends React.Component {
             <div>
                 <img style={{width:'120px'}} src={`http://localhost:3002/${productImage}`} alt={productImage} />
                 <h1>{name}</h1>
-                <h5>$ {price}</h5>
+                <h5>Price: ${price}</h5>
                 <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error"> 
                     <div style={{width: '100px'}}>
-                    <Field onChange={this.onChange} name="quantity" component={this.renderInput} label="Enter quantity"/>
+                    <Field onChange={this.onChange} name="quantity" component='select' label="Enter quantity" style={{outline:'none'}}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </Field>
                     </div>
                     <div>
                         Total: $ {this.state.totalAmount * price}

@@ -22,7 +22,6 @@ class ProductEdit extends React.Component {
         if(!this.props.product) {
             return <div>loading...</div>
         }
-        console.log('Edit',this.props.product)
 
         return (
             <div>

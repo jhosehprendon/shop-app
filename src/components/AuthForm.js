@@ -24,6 +24,17 @@ class AuthForm extends React.Component {
         )
     }
 
+    renderInputPassword = ({input, label, meta}) => {
+        const className = `field ${meta.error && meta.touched ? 'error' : ''}`
+        return (
+            <div className={className}>
+                <label>{label}</label>
+                <input type="password" {...input} autoComplete='off' />
+                {this.renderError(meta)}
+            </div>
+        )
+    }
+
     onSubmit = (formValues) => {
         this.props.onSubmit(formValues)
     }
@@ -32,7 +43,7 @@ class AuthForm extends React.Component {
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error"> 
                 <Field name="email" component={this.renderInput} label="Enter email"/>
-                <Field name="password" type="password" component={this.renderInput} label="Enter password"/>
+                <Field name="password" component={this.renderInputPassword} label="Enter password"/>
                 <button className="ui button primary">{this.props.authMode}</button>
             </form>
         )
