@@ -52,6 +52,10 @@ class ProductList extends React.Component {
     }
 
     render() {
+        if(!this.props.products) {
+            return <div>loading...</div>
+        }
+
         return (
             <div>
                 <h2>Products</h2>

@@ -21,6 +21,10 @@ class OrderList extends React.Component {
     }
 
     renderList = () => {
+        if(!this.props.orders) {
+            return <div>loading...</div>
+        }
+
         return this.props.orders.map(order => {
             return (
                 <div className="item" key={order._id}>
