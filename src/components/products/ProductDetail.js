@@ -57,7 +57,7 @@ class ProductDetail extends React.Component {
                     <h5>Price: ${price}</h5>
                     <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error"> 
                         <div style={{width: '100px'}}>
-                        <Field onChange={this.onChange} name="quantity" component='select' label="Enter quantity" style={{outline:'none'}}>
+                        <Field class="ui dropdown" onChange={this.onChange} name="quantity" component='select' label="Enter quantity" style={{outline:'none'}}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

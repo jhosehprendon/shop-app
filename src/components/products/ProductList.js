@@ -26,14 +26,21 @@ class ProductList extends React.Component {
     renderList = () => {
         return this.props.products.map(product => {
             return (
-                <div className="item" key={product._id}>
-                    {this.renderAdmin(product)}
-                    <div className="content">
-                        <Link to={`/products/${product._id}`} className="header">
-                            {product.name}
-                        </Link>
-                        <div className="description">
-                            {product.price}
+                <div className="ui celled list">
+                    <div className="ui items">
+                        <div className="item" key={product._id}>
+                            <div className="ui small image">
+                                <img src={`http://localhost:3002/${product.productImage}`} alt={product.productImage} />
+                            </div>
+                            <div className="content">
+                                <Link className="header" to={`/products/${product._id}`} className="header">
+                                    {product.name}
+                                </Link>
+                                <div className="description">
+                                    Price: ${product.price}
+                                </div>
+                                {this.renderAdmin(product)}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ class Signup extends React.Component {
     render() {
         return (
             <div>
-                <h3>Log In</h3>
+                <h3 style={{textAlign: 'center'}}>Log In</h3>
                 <AuthForm onSubmit={this.onSubmit} authMode='LogIn' />
                 <div style={{color: 'red'}}>{this.props.authError}</div>
             </div>    
